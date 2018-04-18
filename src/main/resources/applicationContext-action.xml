@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="         http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 配置action -->
+    <bean id="employeeAction" class="com.imen.wms.web.action.EmployeeAction" scope="prototype">
+        <property name="employeeService" ref="employeeService"/>
+        <property name="departmentService" ref="departmentService"/>
+        <property name="roleService" ref="roleService"/>
+    </bean>
+
+    <bean id="departmentAction" class="com.imen.wms.web.action.DepartmentAction" scope="prototype">
+        <property name="departmentService" ref="departmentService"/>
+    </bean>
+
+    <bean id="permissionAction" class="com.imen.wms.web.action.PermissionAction" scope="prototype">
+        <property name="permissionService" ref="permissionService"/>
+    </bean>
+
+    <bean id="roleAction" class="com.imen.wms.web.action.RoleAction" scope="prototype">
+        <property name="roleService" ref="roleService"/>
+        <property name="permissionService" ref="permissionService"/>
+        <property name="systemMenuService" ref="systemMenuService"/>
+    </bean>
+
+    <bean id="loginAction" class="com.imen.wms.web.action.LoginAction" scope="prototype">
+        <property name="employeeService" ref="employeeService"/>
+    </bean>
+
+    <bean id="systemMenuAction" class="com.imen.wms.web.action.SystemMenuAction" scope="prototype">
+        <property name="systemMenuService" ref="systemMenuService"/>
+    </bean>
+
+    <bean id="brandAction" class="com.imen.wms.web.action.BrandAction" scope="prototype">
+        <property name="brandService" ref="brandService"/>
+    </bean>
+
+    <bean id="supplierAction" class="com.imen.wms.web.action.SupplierAction" scope="prototype">
+        <property name="supplierService" ref="supplierService"/>
+    </bean>
+
+    <bean id="productAction" class="com.imen.wms.web.action.ProductAction" scope="prototype">
+        <property name="productService" ref="productService"/>
+        <property name="brandService" ref="brandService"/>
+    </bean>
+
+</beans>

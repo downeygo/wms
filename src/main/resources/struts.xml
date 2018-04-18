@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false"/>
+	<constant name="struts.ui.theme" value="simple"/>
+	<package name="empsPkg" extends="struts-default" namespace="/">
+
+		<interceptors>
+			<interceptor name="checkLogin" class="com.imen.wms.web.interceptor.CheckLoginInterceptor"/>
+			<interceptor name="security" class="com.imen.wms.web.interceptor.SecurityInterceptor"/>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="checkLogin"/>
+				<interceptor-ref name="store">
+					<param name="operationMode">AUTOMATIC</param>
+				</interceptor-ref>
+				<interceptor-ref name="paramsPrepareParamsStack"/>
+				<interceptor-ref name="security"/>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="myStack"/>
+
+		<global-results>
+			<result name="login">/login.jsp</result>
+			<result name="nopermissions">/WEB-INF/view/common/nopermission.jsp</result>
+			<result name="error">/WEB-INF/view/common/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error"/>
+		</global-exception-mappings>
+
+		<action name="login" class="loginAction">
+			<interceptor-ref name="paramsPrepareParamsStack"/>
+			<result name="success" type="redirectAction">main</result>
+		</action>
+
+		<action name="main">
+			<result>/WEB-INF/view/main.jsp</result>
+		</action>
+
+		<!--菜单Action的配置（不同）-->
+		<action name="systemMenu_*" class="systemMenuAction" method="{1}">
+			<result name="list">/WEB-INF/view/systemMenu/list.jsp</result>
+			<result name="input">/WEB-INF/view/systemMenu/input.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">systemMenu</param>
+				<param name="qo.parentId">${qo.parentId}</param>
+			</result>
+		</action>
+
+		<action name="*_*" class="{1}Action" method="{2}">
+			<result name="list">/WEB-INF/view/{1}/list.jsp</result>
+			<result name="input">/WEB-INF/view/{1}/input.jsp</result>
+			<result name="success" type="redirectAction">{1}</result>
+		</action>
+
+		<action name="logout" class="com.imen.wms.web.action.LogoutAction">
+			<result name="login" type="redirect">/login.jsp</result>
+		</action>
+	</package>
+</struts>

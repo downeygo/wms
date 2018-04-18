@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!--引入dao配置文件-->
+	<import resource="applicationContext-dao.xml"/>
+	<!--引入service配置文件-->
+	<import resource="applicationContext-service.xml"/>
+	<!--引入action配置文件-->
+	<import resource="applicationContext-action.xml"/>
+
+    <tx:annotation-driven/>
+    <context:annotation-config/>
+    
+   <!--  配置事物管理器 -->
+   <!--  what -->
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+  <!--   when -->
+    <tx:advice transaction-manager="txManager" id="crudAdvice">
+    	<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+			<tx:method name="query*" read-only="true"/>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="list*" read-only="true"/>
+    	</tx:attributes>
+    </tx:advice>
+    <!-- where -->
+    <aop:config>
+    	<aop:pointcut expression="execution(* com.imen.wms.service.*Service.*(..))" id="crudPoint"/>
+    	<aop:advisor advice-ref="crudAdvice" pointcut-ref="crudPoint"/>
+    </aop:config>
+    	
+    <!-- 配置sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties">
+			<value>
+				<!-- 配置方言 -->
+				hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+				<!-- 显示sql -->
+				hibernate.show_sql=false
+				<!--自动更新数据库-->
+				hibernate.hbm2ddl.auto=update
+			</value>
+		</property>
+		<!-- 加载hibernate映射文件 -->
+		<property name="mappingLocations" value="classpath:com/imen/wms/domain/*.hbm.xml"/>
+	</bean>
+	
+	<!-- 加载db.properties -->
+	<context:property-placeholder location="classpath:db.properties" system-properties-mode="NEVER"/>
+	<!-- 配置dataSource -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${driverClassName}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${password}"/>
+		<property name="filters" value="config,stat"/>
+		<property name="connectionProperties" value="config.decrypt=true"/>
+	</bean>
+</beans>

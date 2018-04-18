@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 配置dao -->
+    <bean id="baseDao" abstract="true">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="employeeDao" class="com.imen.wms.dao.impl.EmployeeDAOImpl" parent="baseDao">
+    </bean>
+
+    <bean id="departmentDao" class="com.imen.wms.dao.impl.DepartmentDAOImpl" parent="baseDao">
+    </bean>
+
+    <bean id="permissionDao" class="com.imen.wms.dao.impl.PermissionDAOImpl" parent="baseDao">
+    </bean>
+
+    <bean id="roleDao" class="com.imen.wms.dao.impl.RoleDAOImpl" parent="baseDao">
+    </bean>
+
+    <bean id="systemMenuDao" class="com.imen.wms.dao.impl.SystemMenuDAOImpl" parent="baseDao">
+    </bean>
+
+    <bean id="brandDao" class="com.imen.wms.dao.impl.BrandDAOImpl" parent="baseDao">
+    </bean>
+<bean id="supplierDao" class="com.imen.wms.dao.impl.SupplierDAOImpl" parent="baseDao"/><bean id="productDao" class="com.imen.wms.dao.impl.ProductDAOImpl" parent="baseDao"/></beans>
