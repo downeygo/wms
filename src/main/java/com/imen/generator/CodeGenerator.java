@@ -1,9 +1,6 @@
 package com.imen.generator;
 
-import com.imen.wms.domain.Brand;
-import com.imen.wms.domain.Product;
-import com.imen.wms.domain.Supplier;
-import com.imen.wms.domain.SystemMenu;
+import com.imen.wms.domain.*;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -70,7 +67,7 @@ public class CodeGenerator {
     }
 
     public static void doWork() throws Exception {
-        ClassInfo classInfo=new ClassInfo(Product.class);
+        ClassInfo classInfo=new ClassInfo(OrderBill.class);
 
         //=================生成DAO,DAOImpl========================
         createFile(classInfo,"IDAO.java","src/main/java/{0}/dao/I{1}DAO.java");
@@ -101,16 +98,15 @@ public class CodeGenerator {
     }
 
     public static void main(String[] args)throws Exception{
-        doWork();
+        //doWork();
         //Ww();
         System.out.println("生成完毕");
     }
 
     public static void Ww()throws Exception {
-        /*ClassInfo classInfo=new ClassInfo(SystemMenu.class);
+        ClassInfo classInfo=new ClassInfo(OrderBill.class);
         createFile(classInfo,"list.jsp","src/main/webapp/WEB-INF/view/{2}/list.jsp");
         createFile(classInfo,"input.jsp","src/main/webapp/WEB-INF/view/{2}/input.jsp");
-        createFile(classInfo,"Action.java","src/main/java/{0}/web/action/{1}Action.java");
-    */
+
     }
 }

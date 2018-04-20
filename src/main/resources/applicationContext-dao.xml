@@ -1,4 +1,5 @@
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="         http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
     <!-- 配置dao -->
@@ -23,4 +24,7 @@
 
     <bean id="brandDao" class="com.imen.wms.dao.impl.BrandDAOImpl" parent="baseDao">
     </bean>
-<bean id="supplierDao" class="com.imen.wms.dao.impl.SupplierDAOImpl" parent="baseDao"/><bean id="productDao" class="com.imen.wms.dao.impl.ProductDAOImpl" parent="baseDao"/></beans>
+    <bean id="supplierDao" class="com.imen.wms.dao.impl.SupplierDAOImpl" parent="baseDao"/>
+    <bean id="productDao" class="com.imen.wms.dao.impl.ProductDAOImpl" parent="baseDao"/>
+    <bean id="orderBillDao" class="com.imen.wms.dao.impl.OrderBillDAOImpl" parent="baseDao"/>
+</beans>
