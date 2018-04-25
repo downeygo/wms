@@ -67,7 +67,7 @@ public class CodeGenerator {
     }
 
     public static void doWork() throws Exception {
-        ClassInfo classInfo=new ClassInfo(OrderBill.class);
+        ClassInfo classInfo=new ClassInfo(SaleAccount.class);
 
         //=================生成DAO,DAOImpl========================
         createFile(classInfo,"IDAO.java","src/main/java/{0}/dao/I{1}DAO.java");
@@ -99,14 +99,15 @@ public class CodeGenerator {
 
     public static void main(String[] args)throws Exception{
         //doWork();
-        //Ww();
+        Ww();
         System.out.println("生成完毕");
     }
 
     public static void Ww()throws Exception {
-        ClassInfo classInfo=new ClassInfo(OrderBill.class);
-        createFile(classInfo,"list.jsp","src/main/webapp/WEB-INF/view/{2}/list.jsp");
-        createFile(classInfo,"input.jsp","src/main/webapp/WEB-INF/view/{2}/input.jsp");
+        ClassInfo classInfo=new ClassInfo(SaleAccount.class);
+        createFile(classInfo,"IDAO.java","src/main/java/{0}/dao/I{1}DAO.java");
+        createFile(classInfo,"DAOImpl.java","src/main/java/{0}/dao/impl/{1}DAOImpl.java");
+        createFile(classInfo,"hbm.xml","src/main/resources/{0}/domain/{1}.hbm.xml");
 
     }
 }

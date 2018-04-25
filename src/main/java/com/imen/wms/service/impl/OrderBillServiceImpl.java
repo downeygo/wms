@@ -58,8 +58,19 @@ public class OrderBillServiceImpl implements IOrderBillService {
         return orderBillDao.query(qo);
     }
 
+    @Override
+    public void audit(OrderBill orderBill) {
+        if(orderBill.getStatus()!=1){//订单未审核
+            orderBill=orderBillDao.get(orderBill.getId());
+            orderBill.setStatus(OrderBill.AUDIT);//审核订单
+            orderBill.setAuditTime(new Date());//设置订单审核时间
+            orderBill.setAuditor(UserContext.getCurrentUser());//设置审核人
+            orderBillDao.update(orderBill);
+        }
+    }
+
     private void parseItems(OrderBill orderBill) {
-        orderBill.setTotalNumebr(BigDecimal.ZERO);
+        orderBill.setTotalNumber(BigDecimal.ZERO);
         orderBill.setTotalAmount(BigDecimal.ZERO);
         //3.设置单据和明细之间的关系
         for (OrderBillItem item : orderBill.getItems()) {
@@ -67,7 +78,7 @@ public class OrderBillServiceImpl implements IOrderBillService {
             //4.计算明细之间的小计
             item.setAmount((item.getNumber().multiply(item.getCostPrice())).setScale(2, RoundingMode.HALF_UP));
             //5.计算单据的总金额和总数量
-            orderBill.setTotalNumebr(orderBill.getTotalNumebr().add(item.getNumber()));
+            orderBill.setTotalNumber(orderBill.getTotalNumber().add(item.getNumber()));
             orderBill.setTotalAmount(orderBill.getTotalAmount().add(item.getAmount()));
         }
     }

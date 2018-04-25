@@ -11,7 +11,7 @@ import java.util.Map;
  * 系统菜单
  */
 
-@Getter@Setter@ToString
+@Getter@Setter
 public class SystemMenu extends BaseDomain implements SystemMenu2JSON {
     private String name;//菜单名字
     private String url;//根菜单的url为空

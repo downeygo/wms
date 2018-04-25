@@ -56,6 +56,7 @@
 			<result name="list">/WEB-INF/view/{1}/list.jsp</result>
 			<result name="input">/WEB-INF/view/{1}/input.jsp</result>
 			<result name="success" type="redirectAction">{1}</result>
+			<result name="{2}">/WEB-INF/view/{1}/{2}.jsp</result>
 		</action>
 
 		<action name="logout" class="com.imen.wms.web.action.LogoutAction">

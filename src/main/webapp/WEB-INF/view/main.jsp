@@ -5,7 +5,7 @@
 <html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>WMS系统</title>
+    <title>进销存仓储系统</title>
     <link href="style/main_css.css" rel="stylesheet" type="text/css" />
     <link href="style/zTreeStyle.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/jquery/jquery.js"></script>

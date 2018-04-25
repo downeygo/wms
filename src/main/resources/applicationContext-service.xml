@@ -35,4 +35,25 @@
     <bean id="orderBillService" class="com.imen.wms.service.impl.OrderBillServiceImpl">
         <property name="orderBillDao" ref="orderBillDao"/>
     </bean>
+    <bean id="depotService" class="com.imen.wms.service.impl.DepotServiceImpl">
+        <property name="depotDao" ref="depotDao"/>
+    </bean>
+    <bean id="stockIncomeBillService" class="com.imen.wms.service.impl.StockIncomeBillServiceImpl">
+        <property name="stockIncomeBillDao" ref="stockIncomeBillDao"/>
+        <property name="productStockDao" ref="productStockDao"/>
+    </bean>
+    <bean id="productStockService" class="com.imen.wms.service.impl.ProductStockServiceImpl">
+        <property name="productStockDao" ref="productStockDao"/>
+    </bean>
+    <bean id="clientService" class="com.imen.wms.service.impl.ClientServiceImpl">
+        <property name="clientDao" ref="clientDao"/>
+    </bean>
+    <bean id="stockOutcomeBillService" class="com.imen.wms.service.impl.StockOutcomeBillServiceImpl">
+        <property name="stockOutcomeBillDao" ref="stockOutcomeBillDao"/>
+        <property name="productStockDao" ref="productStockDao"/>
+        <property name="saleAccountDao" ref="saleAccountDao"/>
+    </bean>
+    <bean id="chartService" class="com.imen.wms.service.impl.ChartServiceImpl">
+        <property name="chartDao" ref="chartDao"/>
+    </bean>
 </beans>

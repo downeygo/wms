@@ -68,15 +68,6 @@ public class ProductAction extends BaseAction {
         return NONE;
     }
 
-    @RequiredPermission("商品列表")
-    @InputConfig(methodName = "input")
-    public String selectProductList() throws Exception {
-        ActionContext.getContext().put("pageResult", productService.query(qo));
-        ActionContext.getContext().put("brands",brandService.listAll());
-        return "selectProductList";
-    }
-
-
     public void prepareSaveOrUpdate() throws Exception {
         if (product.getId() != null) {
             product = productService.get(product.getId());

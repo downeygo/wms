@@ -12,11 +12,11 @@
 		<property name="vdate"/>
 		<property name="status"/>
 		<property name="totalAmount"/>
-		<property name="totalNumebr"/>
+		<property name="totalNumber"/>
 		<property name="inputTime"/>
 		<property name="auditTime"/>
 		<many-to-one name="supplier" column="supplier_id"/>
-		<many-to-one name="inputUser" column="inputUser"/>
+		<many-to-one name="inputUser" column="inputUser_id"/>
 		<many-to-one name="auditor" column="auditor_id"/>
 		<bag name="items" inverse="true" cascade="all-delete-orphan">
 			<key column="bill_id"></key>

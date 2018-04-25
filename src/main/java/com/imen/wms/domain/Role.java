@@ -16,12 +16,4 @@ public class Role extends BaseDomain{
     private String sn;//角色编码
     private List<Permission> permissions=new ArrayList<>();//角色的所有权限
     private List<SystemMenu> menus=new ArrayList<>();//角色管理的菜单
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "name='" + name + '\'' +
-                ", sn='" + sn + '\'' +
-                '}';
-    }
 }

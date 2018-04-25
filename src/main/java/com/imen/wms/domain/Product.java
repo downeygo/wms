@@ -16,13 +16,4 @@ public class Product extends BaseDomain{
     private String imagePath;//图片路径
     private String intro;//货品介绍
     private Brand brand;//货品品牌
-
-    public Map<String,Object> getProductJson(){
-        Map<String,Object> jsonMap=new HashMap<>();
-        jsonMap.put("name",name);
-        jsonMap.put("brand",brand.getName());
-        jsonMap.put("costPrice",costPrice);
-        jsonMap.put("salePriec",salePrice);
-        return jsonMap;
-    }
 }

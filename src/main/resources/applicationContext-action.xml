@@ -49,4 +49,33 @@
         <property name="supplierService" ref="supplierService"/>
         <property name="productService" ref="productService"/>
     </bean>
+    <bean id="depotAction" class="com.imen.wms.web.action.DepotAction" scope="prototype">
+        <property name="depotService" ref="depotService"/>
+    </bean>
+    <bean id="stockIncomeBillAction" class="com.imen.wms.web.action.StockIncomeBillAction" scope="prototype">
+        <property name="stockIncomeBillService" ref="stockIncomeBillService"/>
+        <property name="depotService" ref="depotService"/>
+        <property name="productService" ref="productService"/>
+    </bean>
+    <bean id="productStockAction" class="com.imen.wms.web.action.ProductStockAction" scope="prototype">
+        <property name="productStockService" ref="productStockService"/>
+        <property name="depotService" ref="depotService"/>
+        <property name="brandService" ref="brandService"/>
+    </bean>
+    <bean id="clientAction" class="com.imen.wms.web.action.ClientAction" scope="prototype">
+        <property name="clientService" ref="clientService"/>
+    </bean>
+    <bean id="stockOutcomeBillAction" class="com.imen.wms.web.action.StockOutcomeBillAction" scope="prototype">
+        <property name="stockOutcomeBillService" ref="stockOutcomeBillService"/>
+        <property name="depotService" ref="depotService"/>
+        <property name="productService" ref="productService"/>
+        <property name="clientService" ref="clientService"/>
+    </bean>
+    <bean id="chartAction" class="com.imen.wms.web.action.ChartAction" scope="prototype">
+        <property name="chartService" ref="chartService"/>
+        <property name="depotService" ref="depotService"/>
+        <property name="brandService" ref="brandService"/>
+        <property name="supplierService" ref="supplierService"/>
+        <property name="clientService" ref="clientService"/>
+    </bean>
 </beans>

@@ -50,5 +50,9 @@ public interface IOrderBillService {
      */
     PageResult query(OrderBillQueryObject qo);
 
-
+    /**
+     * 订单审核
+     * @param orderBill
+     */
+    void audit(OrderBill orderBill);
 }

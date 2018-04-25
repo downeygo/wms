@@ -29,15 +29,4 @@ public class Employee extends BaseDomain{
 		}
 		return rolesName;
 	}
-
-	@Override
-	public String toString() {
-		return "Employee{" +
-				"name='" + name + '\'' +
-				", password='" + password + '\'' +
-				", age=" + age +
-				", email='" + email + '\'' +
-				", admin=" + admin +
-				'}';
-	}
 }

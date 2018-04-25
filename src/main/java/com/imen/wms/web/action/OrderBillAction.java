@@ -35,6 +35,7 @@ public class OrderBillAction extends BaseAction {
     @InputConfig(methodName = "input")
     public String execute() throws Exception {
         ActionContext.getContext().put("pageResult", orderBillService.query(qo));
+        ActionContext.getContext().put("supplier", supplierService.listAll());
         return LIST;
     }
 
@@ -51,10 +52,17 @@ public class OrderBillAction extends BaseAction {
 
     @RequiredPermission("订单保存或更新")
     public String saveOrUpdate() throws Exception {
-        if (orderBill.getId() == null) {
-            orderBillService.save(orderBill);
-        }else if(orderBill.getId()!=null){
-            orderBillService.update(orderBill);
+        try {
+            if (orderBill.getId() == null) {
+                orderBillService.save(orderBill);
+                super.addActionMessage("保存成功");
+            }else if(orderBill.getId()!=null){
+                orderBillService.update(orderBill);
+                super.addActionMessage("修改成功");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            super.addActionError("操作失败:"+e.getMessage());
         }
         return SUCCESS;
     }
@@ -67,9 +75,25 @@ public class OrderBillAction extends BaseAction {
         return NONE;
     }
 
+    @RequiredPermission("订单审核")
+    public String audit() throws Exception {
+        orderBillService.audit(orderBill);
+        ServletActionContext.getResponse().getWriter().print("审核成功");
+        return SUCCESS;
+    }
+
+    @RequiredPermission("订单查看")
+    public String open() throws Exception {
+        orderBill=orderBillService.get(orderBill.getId());
+        ActionContext.getContext().put("supplier", supplierService.listAll());
+        ActionContext.getContext().put("product", productService.listAll());
+        return "open";
+    }
+
     public void prepareSaveOrUpdate() throws Exception {
         if (orderBill.getId() != null) {
             orderBill = orderBillService.get(orderBill.getId());
+            orderBill.setSupplier(null);
             orderBill.getItems().clear();
         }
     }

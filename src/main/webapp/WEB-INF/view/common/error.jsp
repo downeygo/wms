@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>小码哥PSS（演示版）</title>
+<title>进销存仓储系统</title>
 <link href="/style/error_css.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -17,9 +17,8 @@
 					<span>执行过程中发生了异常：</span>
 					<span class="error"><s:property value="exception.message" /></span>
 					<span>请联系管理员解决！</span>
-					<span>联系电话：020-29007520</span>
-					<span>联系邮件：service@520it.com</span>
-					<span>&copy;广州小码哥教育科技有限公司</span>
+					<span>联系电话：88888888</span>
+					<span>联系邮件：imlent@163.com</span>
 				</div>
 			</div>
 		</div>
