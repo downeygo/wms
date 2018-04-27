@@ -16,9 +16,8 @@
 				<div id="login_form">
 					<H2>你没有执行该操作的权限！</H2>
 					<span>请联系管理员解决！</span>
-					<span>联系电话：020-29007520</span>
-					<span>联系邮件：service@520it.com</span>
-					<span>&copy;广州小码哥教育科技有限公司</span>
+					<span>联系电话：88888888</span>
+					<span>联系邮件：imlent@163.com</span>
 				</div>
 			</div>
 		</div>
